@@ -91,7 +91,7 @@ class LLMAIPaymentAgent {
   private agentId: string;
   private jwtSecret: string;
   private apiUrl: string;
-  private llm: LLMPaymentAnalyzer;
+  public llm: LLMPaymentAnalyzer;
   public transactionHistory: TransactionHistory[];
 
   constructor(config: Config) {

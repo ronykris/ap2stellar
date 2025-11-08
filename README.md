@@ -136,6 +136,9 @@ It enables natural-language conversations about payments:
 💸 Execute? → Confirmed on-chain in 4s
 ```
 
+ [![](https://markdown-videos-api.jorgenkh.no/youtube/Rvx3Ku0E9aM)](https://youtu.be/Rvx3Ku0E9aM)
+
+
 You can replace the LLM layer with:
 - Business-rule logic (`if amount < threshold`)  
 - IoT triggers (`sensor.payment_due = true`)  

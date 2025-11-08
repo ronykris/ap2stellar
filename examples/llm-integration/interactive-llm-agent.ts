@@ -419,27 +419,22 @@ Network Fee: ${sampleQuotes[0].estimated_fee} XLM per transaction
     // Check for confirmation words
     if ((input.toLowerCase().includes('yes') || input.toLowerCase().includes('confirm') || input.toLowerCase().includes('proceed'))
         && this.context.lastQuote) {
-      // Extract payment details from conversation history - use .content field
-      const conversationText = this.context.messages.slice(-5).map(m => m.content).join(' ');
-      const match = conversationText.match(/(\d+\.?\d*)\s*(XLM|USDC|EURC)/i);
+      // Use the quote data directly instead of re-extracting from conversation
+      try {
+        console.log('\n💸 Executing payment on Stellar blockchain...\n');
 
-      if (match) {
-        const [, amount, currency] = match;
-        try {
-          console.log('\n💸 Executing payment on Stellar blockchain...\n');
+        const payment: PaymentRequest = {
+          amount: this.context.lastQuote.source_amount,
+          sourceCurrency: this.context.lastQuote.source_currency,
+          destinationCurrency: this.context.lastQuote.destination_currency,
+          recipientAgentId: 'merchant-agent',
+          recipientAddress: 'stellar:GDPSW6ONJR7QJEQXB2V4TBRTSJ4ALSSMCMI6GVAN2XMNVKDGV7HE4K63',
+          purpose: 'Interactive LLM payment',
+        };
 
-          const payment: PaymentRequest = {
-            amount: amount,
-            sourceCurrency: this.context.lastQuote.source_currency,
-            destinationCurrency: this.context.lastQuote.destination_currency,
-            recipientAgentId: 'merchant-agent',
-            recipientAddress: 'stellar:GDPSW6ONJR7QJEQXB2V4TBRTSJ4ALSSMCMI6GVAN2XMNVKDGV7HE4K63',
-            purpose: 'Interactive LLM payment',
-          };
+        const confirmation = await this.executePayment(payment);
 
-          const confirmation = await this.executePayment(payment);
-
-          const txInfo = `
+        const txInfo = `
 ✅ PAYMENT SUCCESSFUL!
 
 Blockchain Confirmation:
@@ -456,14 +451,13 @@ Fee: ${confirmation.fees?.network_fee || 'N/A'} XLM
 Verify on Stellar: https://stellar.expert/explorer/testnet/tx/${confirmation.transaction_details?.transaction_hash || 'N/A'}
 `;
 
-          // Print transaction details directly to console (not through LLM)
-          console.log(txInfo);
+        // Print transaction details directly to console (not through LLM)
+        console.log(txInfo);
 
-          // Get LLM congratulatory message
-          return await this.callLLM(`The payment was successfully executed! Transaction hash: ${confirmation.transaction_details?.transaction_hash || 'unknown'}. Please congratulate the user briefly and ask if they need anything else.`);
-        } catch (error) {
-          return await this.callLLM(`Payment execution failed: ${(error as Error).message}\n\nPlease inform the user about the error.`);
-        }
+        // Get LLM congratulatory message
+        return await this.callLLM(`The payment was successfully executed! Transaction hash: ${confirmation.transaction_details?.transaction_hash || 'unknown'}. Please congratulate the user briefly and ask if they need anything else.`);
+      } catch (error) {
+        return await this.callLLM(`Payment execution failed: ${(error as Error).message}\n\nPlease inform the user about the error.`);
       }
     }
 

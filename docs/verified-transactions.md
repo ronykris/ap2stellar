@@ -208,7 +208,7 @@ npm run dev
 
 # 2. Run mock LLM demo
 cd examples/llm-integration
-node mock-llm-demo.js
+npx tsx mock-llm-demo.ts
 ```
 
 The demo will:
@@ -225,7 +225,7 @@ ollama pull llama3.1
 ollama serve
 
 # Run with real LLM
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 ---

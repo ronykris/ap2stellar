@@ -59,7 +59,7 @@ ollama serve
 
 # 4. Run the LLM AI agent (no API key needed!)
 cd examples/llm-integration
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 ### Option 2: OpenAI GPT-4
@@ -72,7 +72,7 @@ export LLM_MODEL=gpt-4  # or gpt-3.5-turbo
 
 # 2. Run the agent
 cd examples/llm-integration
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 ### Option 3: Anthropic Claude
@@ -85,7 +85,7 @@ export LLM_MODEL=claude-3-5-sonnet-20241022
 
 # 2. Run the agent
 cd examples/llm-integration
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 ### Option 4: Mock LLM (Demo without API keys)
@@ -93,7 +93,7 @@ node llm-ai-agent.js
 ```bash
 # No configuration needed - simulates realistic LLM responses
 cd examples/llm-integration
-node mock-llm-demo.js
+npx tsx mock-llm-demo.ts
 ```
 
 ---
@@ -339,26 +339,26 @@ if (analysis.approved) {
 
 ```
 llm-integration/
-├── LLMPaymentAnalyzer.js     # Core LLM integration class
-├── llm-ai-agent.js            # Full AI agent with LLM
-├── mock-llm-demo.js           # Demo without API keys
+├── LLMPaymentAnalyzer.ts     # Core LLM integration class
+├── llm-ai-agent.ts            # Full AI agent with LLM
+├── mock-llm-demo.ts           # Demo without API keys
 ├── README.md                  # Detailed documentation
 └── .env.example               # Configuration template
 ```
 
 ### File Purposes
 
-1. **LLMPaymentAnalyzer.js** - Core integration
+1. **LLMPaymentAnalyzer.ts** - Core integration
    - Supports OpenAI, Anthropic, Ollama
    - Handles API calls and response parsing
    - Error handling and fallbacks
 
-2. **llm-ai-agent.js** - Complete agent
+2. **llm-ai-agent.ts** - Complete agent
    - Integrates with AP2Stellar API
    - Executes real blockchain transactions
    - Tracks transaction history
 
-3. **mock-llm-demo.js** - No-API-key demo
+3. **mock-llm-demo.ts** - No-API-key demo
    - Simulates realistic LLM responses
    - Shows what real integration looks like
    - Executes actual payments
@@ -418,7 +418,7 @@ All LLM decisions are stored in transaction metadata:
 
 ### Custom Prompts
 
-Edit `LLMPaymentAnalyzer.js`:
+Edit `LLMPaymentAnalyzer.ts`:
 
 ```javascript
 getSystemPrompt() {
@@ -545,7 +545,7 @@ const analyses = await Promise.all(
 
 ## Next Steps
 
-1. **Try the Demo**: `node mock-llm-demo.js`
+1. **Try the Demo**: `npx tsx mock-llm-demo.ts`
 2. **Install Ollama**: Free local LLM for testing
 3. **Customize Prompts**: Adapt to your risk policies
 4. **Add Monitoring**: Track LLM performance

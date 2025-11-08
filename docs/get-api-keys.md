@@ -176,7 +176,7 @@ If you run the demo **10 times per day**:
 
 ```bash
 # No API key needed - simulates realistic AI responses
-node examples/llm-integration/mock-llm-demo.js
+npx tsx examples/llm-integration/mock-llm-demo.ts
 ```
 
 ---

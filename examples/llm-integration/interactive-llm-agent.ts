@@ -419,8 +419,9 @@ Network Fee: ${sampleQuotes[0].estimated_fee} XLM per transaction
     // Check for confirmation words
     if ((input.toLowerCase().includes('yes') || input.toLowerCase().includes('confirm') || input.toLowerCase().includes('proceed'))
         && this.context.lastQuote) {
-      // Extract payment details from conversation history
-      const match = this.context.messages.slice(-5).join(' ').match(/(\d+\.?\d*)\s*(XLM|USDC|EURC)/i);
+      // Extract payment details from conversation history - use .content field
+      const conversationText = this.context.messages.slice(-5).map(m => m.content).join(' ');
+      const match = conversationText.match(/(\d+\.?\d*)\s*(XLM|USDC|EURC)/i);
 
       if (match) {
         const [, amount, currency] = match;
@@ -442,24 +443,24 @@ Network Fee: ${sampleQuotes[0].estimated_fee} XLM per transaction
 ✅ PAYMENT SUCCESSFUL!
 
 Blockchain Confirmation:
-   TX Hash: ${confirmation.transaction_details.transaction_hash}
-   Ledger: ${confirmation.transaction_details.ledger}
-   Settlement Time: ${confirmation.transaction_details.settlement_time_seconds}s
+   TX Hash: ${confirmation.transaction_details?.transaction_hash || 'N/A'}
+   Ledger: ${confirmation.transaction_details?.ledger || 'N/A'}
+   Settlement Time: ${confirmation.transaction_details?.settlement_time_seconds || 'N/A'}s
 
 Amount:
-   Sent: ${confirmation.amount.sent} ${confirmation.amount.currency_sent}
-   Received: ${confirmation.amount.received} ${confirmation.amount.currency_received}
+   Sent: ${confirmation.amount?.sent || 'N/A'} ${confirmation.amount?.currency_sent || 'N/A'}
+   Received: ${confirmation.amount?.received || 'N/A'} ${confirmation.amount?.currency_received || 'N/A'}
 
-Fee: ${confirmation.fees.network_fee} XLM
+Fee: ${confirmation.fees?.network_fee || 'N/A'} XLM
 
-Verify on Stellar: https://stellar.expert/explorer/testnet/tx/${confirmation.transaction_details.transaction_hash}
+Verify on Stellar: https://stellar.expert/explorer/testnet/tx/${confirmation.transaction_details?.transaction_hash || 'N/A'}
 `;
 
           // Print transaction details directly to console (not through LLM)
           console.log(txInfo);
 
           // Get LLM congratulatory message
-          return await this.callLLM(`The payment was successfully executed! Transaction hash: ${confirmation.transaction_details.transaction_hash}. Please congratulate the user briefly and ask if they need anything else.`);
+          return await this.callLLM(`The payment was successfully executed! Transaction hash: ${confirmation.transaction_details?.transaction_hash || 'unknown'}. Please congratulate the user briefly and ask if they need anything else.`);
         } catch (error) {
           return await this.callLLM(`Payment execution failed: ${(error as Error).message}\n\nPlease inform the user about the error.`);
         }
@@ -468,6 +469,15 @@ Verify on Stellar: https://stellar.expert/explorer/testnet/tx/${confirmation.tra
 
     // Default: Just chat with LLM
     return await this.callLLM(input);
+  }
+
+  // Typing effect for responses
+  private async typeText(text: string, speed: number = 20): Promise<void> {
+    for (const char of text) {
+      process.stdout.write(char);
+      await new Promise(resolve => setTimeout(resolve, speed));
+    }
+    console.log(); // New line at the end
   }
 
   async start(): Promise<void> {
@@ -489,14 +499,17 @@ Verify on Stellar: https://stellar.expert/explorer/testnet/tx/${confirmation.tra
     console.log('Type "exit" to quit\n');
     console.log('═'.repeat(70));
 
-    // Initial greeting (not from LLM to avoid message alternation issues)
-    console.log(`\n🤖 Assistant: Hello! I'm your AI payment assistant powered by ${this.llmProvider.toUpperCase()}. 👋\n`);
-    console.log('I can help you with:');
+    // Initial greeting with typing effect
+    process.stdout.write('\n🤖 Assistant: ');
+    await this.typeText(`Hello! I'm your AI payment assistant powered by ${this.llmProvider.toUpperCase()}. 👋`, 15);
+    console.log('\nI can help you with:');
     console.log('  • Getting real-time exchange rates from Stellar DEX');
     console.log('  • Analyzing payment costs and risks');
     console.log('  • Executing secure blockchain payments');
     console.log('  • Tracking your transaction confirmations\n');
-    console.log('What would you like to do today?\n');
+    process.stdout.write('🤖 Assistant: ');
+    await this.typeText('What would you like to do today?', 15);
+    console.log();
 
     await this.chatLoop();
   }
@@ -519,7 +532,8 @@ Verify on Stellar: https://stellar.expert/explorer/testnet/tx/${confirmation.tra
 
           try {
             const response = await this.processUserInput(input);
-            console.log(`\n🤖 Assistant: ${response}`);
+            process.stdout.write('\n🤖 Assistant: ');
+            await this.typeText(response, 15); // 15ms per character for smooth typing
           } catch (error) {
             console.error(`\n❌ Error: ${(error as Error).message}`);
           }
@@ -551,7 +565,7 @@ async function main() {
   await agent.start();
 }
 
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}` || import.meta.url.endsWith(process.argv[1])) {
   main().catch(console.error);
 }
 

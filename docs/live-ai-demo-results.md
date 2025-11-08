@@ -213,7 +213,7 @@ To reproduce these results:
 npm run dev
 
 # Run the live AI demo
-node examples/live-ai-demo-auto.js
+npx tsx examples/live-ai-demo-auto.ts
 ```
 
 The demo will:

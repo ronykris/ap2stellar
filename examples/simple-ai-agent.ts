@@ -6,6 +6,7 @@
 import axios, { AxiosResponse } from 'axios';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
+import { fileURLToPath } from 'url';
 
 // Type Definitions
 interface QuoteResponse {
@@ -329,7 +330,7 @@ async function demonstrateAIAgentIntegration(): Promise<void> {
 }
 
 // Run the demo if executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}` || import.meta.url.endsWith(process.argv[1])) {
   demonstrateAIAgentIntegration().catch(console.error);
 }
 

@@ -393,7 +393,7 @@ async function runLLMDemo(): Promise<void> {
 }
 
 // Run the demo
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}` || import.meta.url.endsWith(process.argv[1])) {
   runLLMDemo().catch(console.error);
 }
 

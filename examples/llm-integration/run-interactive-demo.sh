@@ -18,7 +18,7 @@ fi
 if [ "$LLM_PROVIDER" = "ollama" ]; then
     echo "✅ Configuration:"
     echo "   Provider: Ollama (free, local LLM)"
-    echo "   Model: ${LLM_MODEL:-llama3.2:1b}"
+    echo "   Model: ${LLM_MODEL:-qwen2.5:7b}"
     echo ""
 
     # Check if Ollama is running
@@ -34,7 +34,7 @@ if [ "$LLM_PROVIDER" = "ollama" ]; then
         echo "   ollama serve"
         echo ""
         echo "3. Download a model (in another terminal):"
-        echo "   ollama pull llama3.2:1b  # Small 1B model, requires less memory"
+        echo "   ollama pull qwen2.5:7b  # Best model for payment analysis"
         echo ""
         echo "Then run this script again."
         echo ""
@@ -42,7 +42,7 @@ if [ "$LLM_PROVIDER" = "ollama" ]; then
     fi
 
     # Check if model is available
-    MODEL_NAME="${LLM_MODEL:-llama3.2:1b}"
+    MODEL_NAME="${LLM_MODEL:-qwen2.5:7b}"
     if ! curl -s http://localhost:11434/api/tags | grep -q "\"name\":\"$MODEL_NAME\""; then
         echo "⚠️  Model '$MODEL_NAME' not found locally"
         echo ""

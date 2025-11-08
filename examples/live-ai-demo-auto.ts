@@ -463,7 +463,7 @@ async function runLiveDemo(): Promise<void> {
 }
 
 // Run the demo
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}` || import.meta.url.endsWith(process.argv[1])) {
   runLiveDemo().catch(console.error);
 }
 

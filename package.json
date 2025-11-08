@@ -1,6 +1,7 @@
 {
   "name": "ap2stellar",
   "version": "1.0.0",
+  "type": "module",
   "description": "Production-ready cross-border payment router integrating Google's Agent Payments Protocol (AP2) with Stellar Network for AI agent-initiated payments",
   "main": "dist/server.js",
   "scripts": {

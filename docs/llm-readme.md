@@ -57,7 +57,7 @@ ollama serve
 ```bash
 # No configuration needed for Ollama - it's the default!
 cd examples/llm-integration
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 ---
@@ -73,7 +73,7 @@ export LLM_API_KEY=sk-your-openai-api-key-here
 export LLM_MODEL=gpt-4  # or gpt-3.5-turbo for lower cost
 
 # Run the agent
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 ### Cost Estimate
@@ -93,7 +93,7 @@ export LLM_API_KEY=sk-ant-your-anthropic-api-key-here
 export LLM_MODEL=claude-3-5-sonnet-20241022
 
 # Run the agent
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 ### Cost Estimate
@@ -211,7 +211,7 @@ npm run dev
 
 # Run LLM AI agent (in another terminal)
 cd examples/llm-integration
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 ### Example Output
@@ -322,7 +322,7 @@ export LLM_BASE_URL=http://your-server:11434/api
 
 ### Temperature Control
 
-Edit `llm-ai-agent.js`:
+Edit `llm-ai-agent.ts`:
 ```javascript
 const agent = new LLMAIPaymentAgent({
   ...CONFIG,
@@ -458,8 +458,8 @@ curl https://api.anthropic.com/v1/messages \
 
 ## Next Steps
 
-1. **Try the Demo**: `node llm-ai-agent.js`
-2. **Customize Prompts**: Edit `LLMPaymentAnalyzer.js` system prompt
+1. **Try the Demo**: `npx tsx llm-ai-agent.ts`
+2. **Customize Prompts**: Edit `LLMPaymentAnalyzer.ts` system prompt
 3. **Integrate with Your App**: Use `LLMPaymentAnalyzer` class
 4. **Fine-tune Models**: Train on your payment history
 5. **Add Monitoring**: Log LLM decisions for analysis

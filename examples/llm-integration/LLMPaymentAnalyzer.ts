@@ -99,7 +99,7 @@ class LLMPaymentAnalyzer {
     const models: Record<string, string> = {
       openai: 'gpt-4',
       anthropic: 'claude-3-5-sonnet-20241022',
-      ollama: 'llama3.1',
+      ollama: 'qwen2.5:7b',
     };
     return models[this.provider];
   }

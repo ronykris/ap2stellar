@@ -4,7 +4,7 @@ This directory contains example implementations showing how AI agents can integr
 
 ## Examples
 
-### 1. JavaScript/Node.js Integration (`simple-ai-agent.js`)
+### 1. JavaScript/Node.js Integration (`simple-ai-agent.ts`)
 
 A complete AI agent implementation that demonstrates:
 - JWT token generation
@@ -15,7 +15,7 @@ A complete AI agent implementation that demonstrates:
 
 **Run the demo:**
 ```bash
-node examples/simple-ai-agent.js
+npx tsx examples/simple-ai-agent.ts
 ```
 
 ### 2. Python Integration (`simple-ai-agent.py`)
@@ -36,7 +36,7 @@ pip install requests pyjwt
 python examples/simple-ai-agent.py
 ```
 
-### 3. **Live AI Agent Demo** (`live-ai-demo-auto.js`) ⭐ **NEW**
+### 3. **Live AI Agent Demo** (`live-ai-demo-auto.ts`) ⭐ **NEW**
 
 **Advanced autonomous AI agent that makes REAL payment decisions with actual blockchain execution.**
 
@@ -57,7 +57,7 @@ This demo showcases:
 
 **Run the live demo:**
 ```bash
-node examples/live-ai-demo-auto.js
+npx tsx examples/live-ai-demo-auto.ts
 ```
 
 **Example Output:**
@@ -85,7 +85,7 @@ node examples/live-ai-demo-auto.js
    TX Hash: 732dc25cc46b2440fbd91125b8a32257beb2166f08a804073ca7dfb80e4e70c2
 ```
 
-### 4. Interactive AI Agent Demo (`live-ai-demo.js`)
+### 4. Interactive AI Agent Demo (`live-ai-demo.ts`)
 
 Interactive version where you can:
 - Choose from pre-built scenarios or create custom payments
@@ -95,7 +95,7 @@ Interactive version where you can:
 
 **Run interactively:**
 ```bash
-node examples/live-ai-demo.js
+npx tsx examples/live-ai-demo.ts
 ```
 
 ### 5. **🧠 LLM-Powered AI Agent** (`llm-integration/`) ⭐ **REAL AI INTEGRATION**
@@ -127,14 +127,14 @@ ollama serve
 
 # Run LLM AI agent (in another terminal)
 cd examples/llm-integration
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 **Or use OpenAI/Claude:**
 ```bash
 export LLM_PROVIDER=openai  # or 'anthropic'
 export LLM_API_KEY=sk-your-api-key-here
-node llm-ai-agent.js
+npx tsx llm-ai-agent.ts
 ```
 
 **Example LLM Analysis:**
@@ -168,7 +168,7 @@ node llm-ai-agent.js
 ```bash
 # No configuration needed - simulates realistic LLM responses
 cd examples/llm-integration
-node mock-llm-demo.js
+npx tsx mock-llm-demo.ts
 ```
 
 **📚 Complete Documentation:**
@@ -421,7 +421,7 @@ The examples can be run against the local development server:
 npm run dev
 
 # Terminal 2: Run AI agent example
-node examples/simple-ai-agent.js
+npx tsx examples/simple-ai-agent.ts
 ```
 
 ## Support

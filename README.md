@@ -1,4 +1,4 @@
-# 🌐 AP2Stellar — Agent Payment Protocol Gateway on Stellar
+# AP2Stellar — Agent Payment Protocol Gateway on Stellar
 
 > **A unified API for Agentic, AI, and Automated Payments on the Stellar Network**
 
@@ -8,7 +8,7 @@ It acts as a **gateway between intent-driven payment standards and blockchain se
 
 ---
 
-## 🚀 Overview
+## Overview
 
 AP2Stellar allows developers to:
 - Parse and validate **AP2 mandates** (Intent, Cart, Payment)
@@ -20,7 +20,7 @@ It is **payment-rail agnostic** at the protocol layer but uses **Stellar** as it
 
 ---
 
-## 🧱 Core Architecture
+## Core Architecture
 
 ```
 Agent (AI / IoT / Workflow)
@@ -42,47 +42,47 @@ Agent (AI / IoT / Workflow)
 
 ---
 
-## 🧩 Key Capabilities
+## Key Capabilities
 
-### 🔐 Protocol Compliance
+### Protocol Compliance
 Implements **Google’s Agent Payment Protocol (AP2)** structure:
 - **Intent Mandate:** what the user/agent intends to do  
 - **Cart Mandate:** itemized purchase or request  
 - **Payment Mandate:** final signed approval  
 
-### 💸 Settlement Engine
+### Settlement Engine
 - Uses Stellar Horizon & DEX for routing, quoting, and conversion  
 - Supports multiple assets: XLM, USDC, EURC, etc.  
 - Executes transactions with instant on-chain confirmation  
 
-### 🧠 Extensible Analysis Layer
+### Extensible Analysis Layer
 - Pluggable architecture for decision logic:
   - **LLMs** (e.g., GPT-4, Claude, Ollama)  
   - **Rule engines / policy evaluators**  
   - **IoT device agents**  
   - **Enterprise workflow triggers (Kafka, Airflow, etc.)**
 
-### 📊 Observability & Security
+### Observability & Security
 - Logs every mandate → decision → transaction  
 - Configurable spending limits, rate limits, and replay protection  
 - Webhook callbacks for settlement confirmations  
 
 ---
 
-## 💡 Example Use Cases
+## Example Use Cases
 
 | Category | Description | Example |
 |-----------|--------------|----------|
-| 🤖 **AI Payment Agent** | LLM analyzes payment requests and executes via AP2Stellar | See [`examples/llm-integration`](./examples/llm-integration) |
-| 🏭 **IoT / M2M Payments** | Devices automatically pay for energy, bandwidth, or supplies | Smart meter paying supplier via AP2 mandate |
-| 🧾 **Subscription Billing** | Agents manage recurring AP2 payment mandates with limits | Auto-renew SaaS payments in stablecoins |
-| 🛒 **E-Commerce Checkout** | Merchants process AP2 payments with dynamic quotes | Customer agent sends Intent → Cart → Payment |
-| 🌍 **Cross-Border Remittance** | FX conversion and instant Stellar settlement | USD→EURC with risk-checked path payment |
-| 💼 **Enterprise Automation** | Back-office bots pay vendors using AP2 mandates and audit trails | ERP triggers payments through AP2Stellar API |
+| **AI Payment Agent** | LLM analyzes payment requests and executes via AP2Stellar | See [`examples/llm-integration`](./examples/llm-integration) |
+| **IoT / M2M Payments** | Devices automatically pay for energy, bandwidth, or supplies | Smart meter paying supplier via AP2 mandate |
+| **Subscription Billing** | Agents manage recurring AP2 payment mandates with limits | Auto-renew SaaS payments in stablecoins |
+| **E-Commerce Checkout** | Merchants process AP2 payments with dynamic quotes | Customer agent sends Intent → Cart → Payment |
+| **Cross-Border Remittance** | FX conversion and instant Stellar settlement | USD→EURC with risk-checked path payment |
+| **Enterprise Automation** | Back-office bots pay vendors using AP2 mandates and audit trails | ERP triggers payments through AP2Stellar API |
 
 ---
 
-## ⚙️ Quick Start
+## Quick Start
 
 ```bash
 # 1. Clone repo
@@ -100,7 +100,7 @@ Visit `http://localhost:3000/api/v1/health` to verify it’s running.
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 Set environment variables as needed:
 
@@ -119,7 +119,7 @@ export ANTHROPIC_API_KEY=sk-ant-...
 
 ---
 
-## 💬 Example: LLM-Powered Payment Analyzer (One of Many Plugins)
+## Example: LLM-Powered Payment Analyzer (One of Many Plugins)
 
 The **LLM integration** demonstrates how any intelligent agent can plug into AP2Stellar:
 
@@ -131,9 +131,9 @@ cd examples/llm-integration
 It enables natural-language conversations about payments:
 
 ```
-🤖 Assistant: What's the rate for 100 XLM → USDC?
-📊 Real-time Quote: 100 XLM = 339.6 USDC
-💸 Execute? → Confirmed on-chain in 4s
+Assistant: What's the rate for 100 XLM → USDC?
+Real-time Quote: 100 XLM = 339.6 USDC
+Execute? → Confirmed on-chain in 4s
 ```
 
  [![](https://markdown-videos-api.jorgenkh.no/youtube/Rvx3Ku0E9aM)](https://youtu.be/Rvx3Ku0E9aM)
@@ -146,7 +146,7 @@ You can replace the LLM layer with:
 
 ---
 
-## 🧭 Roadmap & Planned Enhancements
+## Roadmap & Planned Enhancements
 
 ### Protocol & Payment Layer
 - Multi-asset & cross-ledger settlements  
@@ -172,7 +172,7 @@ You can replace the LLM layer with:
 
 ---
 
-## 📦 Packaging & Distribution
+## Packaging & Distribution
 
 | Channel | Description |
 |----------|--------------|
@@ -183,7 +183,7 @@ You can replace the LLM layer with:
 
 ---
 
-## 🔗 Integration Opportunities
+## Integration Opportunities
 
 ### Agent Ecosystems
 - Google AP2 Agents (native)
@@ -206,7 +206,7 @@ You can replace the LLM layer with:
 
 ---
 
-## 📊 Cost Snapshot
+## Cost Snapshot
 
 | Component | Approx. Cost |
 |------------|--------------|
@@ -217,7 +217,7 @@ You can replace the LLM layer with:
 
 ---
 
-## 🧱 Repository Layout
+## Repository Layout
 
 ```
 ap2stellar/
@@ -238,7 +238,7 @@ ap2stellar/
 ```
 ---
 
-## 🧰 Developer Snippet
+## Developer Snippet
 
 ```javascript
 import { AP2StellarClient } from '@ap2stellar/core';
@@ -312,7 +312,7 @@ See [API-DOCS](./docs/api-docs.md) for complete API documentation.
 
 ---
 
-## 🧩 License
+## License
 MIT © 2025 — AP2Stellar Contributors
 
 
